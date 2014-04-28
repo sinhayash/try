@@ -50,12 +50,29 @@ int lengthRecur(list l) {
 	return __lengthRecur(l, 0);
 }
 
+void push(list* headRef, int data) {
+	//Using pointer to list (pointer to pointer to node)
+	list n = newNode(data);
+	n->next = *headRef;
+	*headRef = n;
+}
+
+list push2(list headRef, int data) {
+	//returning updated list, caller has to take care.
+	list n = newNode(data);
+	n->next = headRef;
+	headRef = n;
+	return n;
+}
+
 int main(int argc, char const *argv[]) {
 	list l = newNode(1);
 	list second = newNode(2);
 	list third = newNode(3);
 	l->next = second;
 	second->next = third;
+	push(&l, 4);
+	l = push2(l, 5);
 	print(l);
 	printf("Count is %d\n", lengthIter(l));
 	printf("Count is %d\n", lengthRecur(l));
