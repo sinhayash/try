@@ -65,12 +65,23 @@ list push2(list headRef, int data) {
 	return n;
 }
 
+list appendNode(list* headRef, int data) {
+	list n = newNode(data);
+	list current = *headRef;
+
+	if(current == NULL)
+		*headRef = n;
+	else {
+		while(current->next != NULL)
+			current = current->next;
+		current->next = n;
+	}
+}
+
 int main(int argc, char const *argv[]) {
 	list l = newNode(1);
-	list second = newNode(2);
-	list third = newNode(3);
-	l->next = second;
-	second->next = third;
+	appendNode(&l, 2);
+	appendNode(&l, 3);
 	push(&l, 4);
 	l = push2(l, 5);
 	print(l);
