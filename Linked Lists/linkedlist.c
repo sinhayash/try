@@ -78,10 +78,22 @@ list appendNode(list* headRef, int data) {
 	}
 }
 
+list appendNodewithPush(list* headRef, int data) {
+	list current = *headRef;
+
+	if(current == NULL)
+		push(headRef, data);
+	else {
+		while(current->next != NULL)
+			current = current->next;
+		push(&(current->next), data);
+	}
+}
+
 int main(int argc, char const *argv[]) {
 	list l = newNode(1);
 	appendNode(&l, 2);
-	appendNode(&l, 3);
+	appendNodewithPush(&l, 3);
 	push(&l, 4);
 	l = push2(l, 5);
 	print(l);
