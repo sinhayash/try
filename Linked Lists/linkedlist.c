@@ -90,6 +90,30 @@ list appendNodewithPush(list* headRef, int data) {
 	}
 }
 
+list copyList(list l) {
+	list current = l;
+	list newList = NULL;
+	list tail = NULL; //tail of newList
+
+	if(current == NULL)
+		return newList;
+	else {
+		while(current != NULL) {
+			if(newList == NULL) {
+				//special case: push head to newList
+				push(&newList, current->data);
+				tail = newList;
+			}
+			else {
+				appendNode(&newList, current->data);
+				tail = tail->next;
+			}
+			current = current->next;
+		}
+	}
+	return newList;
+}
+
 int main(int argc, char const *argv[]) {
 	list l = newNode(1);
 	appendNode(&l, 2);
@@ -99,5 +123,7 @@ int main(int argc, char const *argv[]) {
 	print(l);
 	printf("Count is %d\n", lengthIter(l));
 	printf("Count is %d\n", lengthRecur(l));
+	list l2 = copyList(l);
+	print(l2);
 	return 0;
 }
