@@ -78,6 +78,21 @@ list appendNode(list* headRef, int data) {
 	}
 }
 
+list appendNode2(list headRef, int data) {
+	//returning updated list, caller has to take care.
+	list n = newNode(data);
+	list current = headRef;
+
+	if(current == NULL)
+		headRef = n;
+	else {
+		while(current->next != NULL)
+			current = current->next;
+		current->next = n;
+	}
+	return headRef;
+}
+
 list appendNodewithPush(list* headRef, int data) {
 	list current = *headRef;
 
@@ -117,6 +132,7 @@ list copyList(list l) {
 int main(int argc, char const *argv[]) {
 	list l = newNode(1);
 	appendNode(&l, 2);
+	l = appendNode2(l, 6);
 	appendNodewithPush(&l, 3);
 	push(&l, 4);
 	l = push2(l, 5);
