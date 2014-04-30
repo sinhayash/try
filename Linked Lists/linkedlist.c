@@ -129,6 +129,16 @@ list copyList(list l) {
 	return newList;
 }
 
+list copyListRecur(list l) {
+	// uses stack space proportional to the length of its list, hence not good for production.
+	if(l == NULL)
+		return NULL;
+	list newList = newNode(l->data);
+	newList-> next = copyListRecur(l->next);
+
+	return newList;
+}
+
 int main(int argc, char const *argv[]) {
 	list l = newNode(1);
 	appendNode(&l, 2);
@@ -141,5 +151,7 @@ int main(int argc, char const *argv[]) {
 	printf("Count is %d\n", lengthRecur(l));
 	list l2 = copyList(l);
 	print(l2);
+	list l3 = copyListRecur(l);
+	print(l3);
 	return 0;
 }
