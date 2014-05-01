@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-struct node {
-	struct node* next;
-	int data;
-};
-
-typedef struct node node;
-typedef node* list;
+#include "linkedlist.h"
 
 list newNode(int d) {
 	list node = (list)malloc(sizeof(node));
