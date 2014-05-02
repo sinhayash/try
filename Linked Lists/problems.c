@@ -23,7 +23,21 @@ list buildOneTwoThree() {
 	return head;
 }
 
+/*
+ Given a list and an int, return the number of times that int occurs
+ in the list.
+*/
+int count(list head, int searchFor) {
+	int count = 0;
+	while(head != NULL) {
+		if(head->data == searchFor) count++;
+		head = head->next;
+	}
+	return count;
+}
+
 int main(int argc, char const *argv[]) {
 	list l = buildOneTwoThree();
+	printf("Count of 2 in list is %d.\n", count(l, 2));
 	return 0;
 }
