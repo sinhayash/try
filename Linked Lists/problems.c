@@ -53,9 +53,25 @@ int getNth(list head, int index) {
 	return -1;//returns -1 by default if index not found
 }
 
+
+/*
+ deallocates all of its memory and sets its head pointer to NULL
+*/
+void deleteList(list* headRef) {
+	list current = *headRef;
+	list next;
+	while(current != NULL) {
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*headRef = NULL;
+}
+
 int main(int argc, char const *argv[]) {
 	list l = buildOneTwoThree();
 	printf("Count of 2 in list is %d.\n", count(l, 2));
 	printf("Data at 2nd index in list l is %d.\n", getNth(l, 2));
+	deleteList(&l);
 	return 0;
 }
