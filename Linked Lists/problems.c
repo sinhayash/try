@@ -36,8 +36,26 @@ int count(list head, int searchFor) {
 	return count;
 }
 
+/*
+ Given a list and an index, return the data
+ in the nth node of the list. The nodes are numbered from 0.
+ Assert fails if the index is invalid (outside 0..lengh-1).
+*/
+int getNth(list head, int index) {
+	int current = 0;//current index
+
+	while(head != NULL) {
+		if(current == index)
+			return head->data;
+		current++;
+		head = head->next;
+	}
+	return -1;//returns -1 by default if index not found
+}
+
 int main(int argc, char const *argv[]) {
 	list l = buildOneTwoThree();
 	printf("Count of 2 in list is %d.\n", count(l, 2));
+	printf("Data at 2nd index in list l is %d.\n", getNth(l, 2));
 	return 0;
 }
